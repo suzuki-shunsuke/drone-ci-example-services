@@ -1,0 +1,16 @@
+---
+kind: pipeline
+name: default
+
+steps:
+- name: test
+  image: redis
+  commands:
+  - sleep 5
+  - redis-cli -h redis ping
+  - redis-cli -h redis set FOO bar
+  - redis-cli -h redis get FOO
+
+services:
+- name: redis
+  image: redis
